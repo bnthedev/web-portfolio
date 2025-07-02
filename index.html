@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ben Řehák — Developer Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    /* load. anim. */
+    #loader {
+      animation: fadeOut 0.5s ease-out forwards;
+    }
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    
+    .bar {
+      width: 4px;
+      height: 20px;
+      margin: 0 1px;
+      background: #10b981;
+      animation: bounce 1s infinite ease-in-out;
+    }
+    .bar:nth-child(2) { animation-delay: 0.1s; }
+    .bar:nth-child(3) { animation-delay: 0.2s; }
+    .bar:nth-child(4) { animation-delay: 0.3s; }
+    .bar:nth-child(5) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      0%, 100% { transform: scaleY(0.5); }
+      50% { transform: scaleY(1.5); }
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white font-mono transition-colors duration-300">
+
+  <!-- Load. screen -->
+  <div id="loader" class="fixed inset-0 z-50 bg-gray-900 flex items-center justify-center">
+    <h2 class="text-3xl font-bold animate-pulse text-teal-400">Loading...</h2>
+  </div>
+
+  <!-- 🎵 Přehrání hudby -->
+  <audio id="bg-audio" src="song.mp3" loop></audio>
+  <button id="play-audio" class="absolute top-4 left-4 bg-gray-700 text-white px-3 py-1 rounded hover:bg-teal-500 z-50 flex items-center gap-2">
+    🎵 <span id="audio-label">Play</span>
+    <div id="equalizer" class="flex items-end h-4">
+      <div class="bar hidden"></div>
+      <div class="bar hidden"></div>
+      <div class="bar hidden"></div>
+      <div class="bar hidden"></div>
+      <div class="bar hidden"></div>
+    </div>
+  </button>
+
+  <!-- navigace -->
+  <header class="fixed w-full top-0 left-0 bg-gray-800 dark:bg-gray-900 shadow-md z-40">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Ben Řehák</h1>
+      <nav class="space-x-6">
+        <a href="#about" class="hover:text-teal-400">About</a>
+        <a href="#projects" class="hover:text-teal-400">Projects</a>
+        <a href="#contact" class="hover:text-teal-400">Contact</a>
+        <button id="toggle-dark" class="bg-gray-700 px-3 py-1 rounded hover:bg-teal-500 transition">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="min-h-screen flex items-center justify-center px-6" id="hero">
+    <div class="text-center mt-24">
+      <h2 class="text-4xl md:text-6xl font-bold mb-4">👨‍💻 I'm Ben, a backend developer</h2>
+      <p class="text-gray-400 text-xl dark:text-gray-300">I create Minecraft plugins, web tools & security automations</p>
+      <div class="mt-8 space-x-4">
+        <a href="https://github.com/tvuj-github" target="_blank" class="bg-gray-700 hover:bg-teal-500 px-4 py-2 rounded">GitHub</a>
+        <a href="https://discord.gg/GTXh6RbaTZ" target="_blank" class="bg-gray-700 hover:bg-teal-500 px-4 py-2 rounded">Discord</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- abt -->
+  <section id="about" class="min-h-screen px-6 py-20 scroll-mt-24">
+    <h3 class="text-3xl font-bold mb-6">🧠 About Me</h3>
+    <p class="text-gray-400 max-w-3xl dark:text-gray-300">
+      I'm a backend developer with a strong interest in cybersecurity and ethical hacking. My current focus is on penetration testing — analyzing and exploiting vulnerabilities in systems to help improve their security. I enjoy building practical tools for automation, server control, and security auditing using Python and Java. Whether it's Minecraft plugin development or remote access frameworks, I combine creativity with a hacker mindset to build powerful and responsible software solutions.
+    </p>
+  </section>
+
+  <!-- projekty -->
+  <section id="projects" class="min-h-screen px-6 py-20 bg-gray-800 dark:bg-gray-950 scroll-mt-24">
+    <h3 class="text-3xl font-bold mb-6">🚀 Projects</h3>
+    <ul class="space-y-4">
+      <li class="bg-gray-700 dark:bg-gray-800 p-4 rounded">
+        <h4 class="text-xl font-semibold">Tracking AT plugin</h4>
+        <p class="text-gray-300">A Minecraft helper management plugin with MySQL integration, AFK detection, and Discord webhooks.</p>
+      </li>
+      <li class="bg-gray-700 dark:bg-gray-800 p-4 rounded">
+        <h4 class="text-xl font-semibold">BuildSystem</h4>
+        <p class="text-gray-300">A full-featured world management system for builders with GUI, Multiverse support, and type filtering.</p>
+      </li>
+      <li class="bg-gray-700 dark:bg-gray-800 p-4 rounded">
+        <h4 class="text-xl font-semibold">Python Remote Access Tool (PenTest)</h4>
+        <p class="text-gray-300">
+          A Python-based remote access framework developed for internal penetration testing and red team operations.
+          The tool allows secure command execution, file exfiltration, screenshot capturing, and privilege escalation 
+          on Windows machines (including admin-level access under test conditions). Designed for educational and authorized 
+          security audits only.
+        </p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- kontakt -->
+  <section id="contact" class="min-h-screen px-6 py-20 scroll-mt-24">
+    <h3 class="text-3xl font-bold mb-6">📬 Contact</h3>
+    <p class="text-gray-400 dark:text-gray-300 mb-6">
+      For collaboration or questions, contact me via 
+      <a href="mailto:benjarehak@gmail.com" class="text-teal-400">email</a>, 
+      on <a href="https://discord.gg/GTXh6RbaTZ" class="text-teal-400">Discord</a>, 
+      or send me a message directly using the form below.
+    </p>
+
+    <form id="contactForm" class="max-w-xl space-y-4">
+      <div>
+        <label class="block mb-1 text-gray-300">Your contact info (email, Discord, etc.):</label>
+        <input type="text" id="contactInfo" class="w-full p-2 rounded bg-gray-800 text-white border border-gray-700" required />
+      </div>
+      <div>
+        <label class="block mb-1 text-gray-300">Your message:</label>
+        <textarea id="message" rows="5" class="w-full p-2 rounded bg-gray-800 text-white border border-gray-700" required></textarea>
+      </div>
+      <div>
+        <label class="block mb-1 text-gray-300" id="antispam-label">Anti-spam:</label>
+        <input type="text" id="antispam" class="w-full p-2 rounded bg-gray-800 text-white border border-gray-700" required />
+      </div>
+      <button type="submit" class="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded">
+        Send Message
+      </button>
+      <p id="formStatus" class="text-sm mt-2 text-gray-400"></p>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 dark:bg-gray-900 text-center py-6">
+    <p class="text-gray-500 dark:text-gray-400">&copy; 2025 Ben Řehák</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // load. screen hide
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
+      }, 3000);
+    });
+
+    // světlý režim toggle
+    document.getElementById('toggle-dark').addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+    });
+
+    // play on/off hudba
+    const audio = document.getElementById("bg-audio");
+    const playBtn = document.getElementById("play-audio");
+    const label = document.getElementById("audio-label");
+    const bars = document.querySelectorAll("#equalizer .bar");
+
+    let isPlaying = false;
+    playBtn.addEventListener("click", () => {
+      if (!isPlaying) {
+        audio.play();
+        label.textContent = "Pause";
+        bars.forEach(bar => bar.classList.remove("hidden"));
+      } else {
+        audio.pause();
+        label.textContent = "Play";
+        bars.forEach(bar => bar.classList.add("hidden"));
+      }
+      isPlaying = !isPlaying;
+    });
+
+    // Antispam gen.
+    const a = Math.floor(Math.random() * 6) + 1;
+    const b = Math.floor(Math.random() * 6) + 1;
+    const correctAnswer = a + b;
+    document.getElementById("antispam-label").textContent = `Anti-spam: What is ${a} + ${b}?`;
+
+    const form = document.getElementById("contactForm");
+    const status = document.getElementById("formStatus");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const contact = document.getElementById("contactInfo").value.trim();
+      const message = document.getElementById("message").value.trim();
+      const antispam = document.getElementById("antispam").value.trim();
+
+      if (!contact || !message || !antispam) {
+        status.textContent = "Please fill in all fields.";
+        return;
+      }
+
+      if (parseInt(antispam) !== correctAnswer) {
+        status.textContent = "Incorrect anti-spam answer.";
+        return;
+      }
+
+      const webhookURL = "https://discord.com/api/webhooks/1389954044033896540/4BYONYbnUpzJW0wlzh6uJ2xoRj-saqmqMy1mxnOZLP096aQD1xmFtl9xiy8QiH1S5qsG";
+
+      const payload = {
+        content: `📬 **New message from portfolio site:**\n\n**Contact:** ${contact}\n**Message:** ${message}`
+      };
+
+      try {
+        const res = await fetch(webhookURL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          status.textContent = "✅ Message sent successfully!";
+          form.reset();
+        } else {
+          status.textContent = "❌ Failed to send message.";
+        }
+      } catch (error) {
+        status.textContent = "⚠️ Error sending message.";
+      }
+    });
+  </script>
+</body>
+</html>
